@@ -10,9 +10,9 @@ global $post;
 
 ?>
 
-<div class="rh_page__head rh_page__property">
+<div class="rh_page__head rh_page__property single_head">
 
-	<div class="rh_page__property_title">
+	<div class="rh_page__property_title single_property_title">
 
         <?php inspiry_property_qr_code(); ?>
 
@@ -42,37 +42,6 @@ global $post;
 
 	</div>
 	<!-- /.rh_page__property_title -->
-
-	<div class="rh_page__property_price">
-		<p class="status">
-			<?php
-			/* Property Status. For example: For Sale, For Rent */
-			$status_terms = get_the_terms( get_the_ID(), 'property-status' );
-			if ( ! empty( $status_terms ) ) {
-				$status_count = 0;
-				foreach ( $status_terms as $term ) {
-					if ( $status_count > 0 ) {
-						echo ', ';
-					}
-					echo esc_html( $term->name );
-					$status_count ++;
-				}
-			} else {
-				echo '&nbsp;';
-			}
-			?>
-		</p>
-		<!-- /.status -->
-		<p class="price">
-			<?php
-			if ( function_exists( 'ere_property_price' ) ) {
-				ere_property_price();
-			}
-            ?>
-		</p>
-		<!-- /.price -->
-	</div>
-	<!-- /.rh_page__property_price -->
-
+	
 </div>
 <!-- /.rh_page__head -->

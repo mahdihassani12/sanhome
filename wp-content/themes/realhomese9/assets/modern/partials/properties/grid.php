@@ -17,6 +17,11 @@ get_template_part( 'assets/modern/partials/properties/common-top' );
 
 <section class="rh_section rh_section--flex rh_wrap--padding rh_wrap--topPadding">
 
+	<div class="rh_page rh_page__sidebar">
+		<?php get_sidebar( 'property-listing' ); ?>
+	</div>
+	<!-- /.rh_page rh_page__sidebar -->
+
 	<div class="rh_page rh_page__listing_page rh_page__main">
 
 		<?php
@@ -86,11 +91,6 @@ get_template_part( 'assets/modern/partials/properties/common-top' );
 
 	</div>
 	<!-- /.rh_page rh_page__main -->
-
-	<div class="rh_page rh_page__sidebar">
-		<?php get_sidebar( 'property-listing' ); ?>
-	</div>
-	<!-- /.rh_page rh_page__sidebar -->
 
 </section>
 <!-- /.rh_section rh_wrap rh_wrap--padding -->

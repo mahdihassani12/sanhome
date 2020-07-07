@@ -400,6 +400,17 @@ if (!function_exists('inspiry_theme_sidebars')) {
             'after_title' => '</h3>',
         ));
 
+        // Location: Default Sidebar.
+        register_sidebar(array(
+            'name' => esc_html__('Home Sidebar', 'framework'),
+            'id' => 'home-sidebar',
+            'description' => esc_html__('Widget area for default sidebar on news and post pages.', 'framework'),
+            'before_widget' => '<section id="%1$s" class="widget clearfix %2$s">',
+            'after_widget' => '</section>',
+            'before_title' => '<h3 class="title">',
+            'after_title' => '</h3>',
+        ));
+
         // Location: Sidebar Pages.
         register_sidebar(array(
             'name' => esc_html__('Pages Sidebar', 'framework'),

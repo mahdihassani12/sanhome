@@ -25,84 +25,53 @@ if( is_page_template('templates/home.php')){
 
 ?>
 <footer class="rh_footer <?php echo esc_attr($border_class);?>">
+	<div class="container">
+		<div class="row footer_row">
+			<div class="col-md-3">
+				<div class="rh_widgets">
+					<?php dynamic_sidebar( 'footer-fourth-column' ); ?>
+			    </div>
+			</div>
 
-	
+			<div class="col-md-3">
+				<div class="rh_widgets">
+					<?php dynamic_sidebar( 'footer-third-column' ); ?>
+			    </div>
+			</div>
 
-	<div class="rh_footer__wrap rh_footer--alignTop rh_footer--paddingBottom">
-		<?php
+			<div class="col-md-3">
+				<div class="rh_widgets">
+					<?php dynamic_sidebar( 'footer-second-column' ); ?>
+			    </div>
+			</div>
 
-			$footer_columns = get_option( 'inspiry_footer_columns', '3' );
+			<div class="col-md-3">
+				<div class="rh_widgets">
+					<?php dynamic_sidebar( 'footer-first-column' ); ?>
+			    </div>
+			</div>
 
-			switch ( $footer_columns ) {
-				case '1' :
-					$column_class = 'column-1';
-					break;
-				case '2' :
-					$column_class = 'columns-2';
-					break;
-				case '4' :
-					$column_class = 'columns-4';
-					break;
-				default:
-					$column_class = 'columns-3';
-			}
+		</div> <!-- end of inner row -->
+			<hr>
+		<div class="rh_footer__wrap rh_footer--space_between copyrights_div">
+			<p class="copyrights">
+				<?php
+				$copyrights = get_option( 'theme_copyright_text' );
+				echo ( ! empty( $copyrights ) ) ? $copyrights : false;
+				?>
+			</p>
+			<!-- /.copyrights -->
 
-		?>
-		<div class="rh_footer__widgets <?php echo esc_attr( $column_class ); ?>">
-			<?php get_template_part( 'assets/modern/partials/footer/first-column' ); ?>
+			<p class="designed-by">
+				<?php
+				$designed_by = get_option( 'theme_designed_by_text' );
+				echo ( ! empty( $designed_by ) ) ? $designed_by : false;
+				?>
+			</p>
+			<!-- /.copyrights -->
 		</div>
-		<!-- /.rh_footer__widgets -->
-
-		<?php
-			if ( intval( $footer_columns ) >= 2 ) {
-				?>
-				<div class="rh_footer__widgets <?php echo esc_attr( $column_class ); ?>">
-					<?php get_template_part( 'assets/modern/partials/footer/second-column' ); ?>
-				</div>
-				<!-- /.rh_footer__widgets -->
-				<?php
-			}
-
-			if ( intval( $footer_columns ) >= 3 ) {
-				?>
-				<div class="rh_footer__widgets <?php echo esc_attr( $column_class ); ?>">
-					<?php get_template_part( 'assets/modern/partials/footer/third-column' ); ?>
-				</div>
-				<!-- /.rh_footer__widgets -->
-				<?php
-			}
-
-			if ( intval( $footer_columns ) == 4 ) {
-				?>
-				<div class="rh_footer__widgets <?php echo esc_attr( $column_class ); ?>">
-					<?php get_template_part( 'assets/modern/partials/footer/fourth-column' ); ?>
-				</div>
-				<!-- /.rh_footer__widgets -->
-				<?php
-			}
-		?>
+		<!-- /.rh_footer__wrap -->
 	</div>
-	<!-- /.rh_footer__wrap -->
-
-	<div class="rh_footer__wrap rh_footer--space_between">
-		<p class="copyrights">
-			<?php
-			$copyrights = get_option( 'theme_copyright_text' );
-			echo ( ! empty( $copyrights ) ) ? $copyrights : false;
-			?>
-		</p>
-		<!-- /.copyrights -->
-
-		<p class="designed-by">
-			<?php
-			$designed_by = get_option( 'theme_designed_by_text' );
-			echo ( ! empty( $designed_by ) ) ? $designed_by : false;
-			?>
-		</p>
-		<!-- /.copyrights -->
-	</div>
-	<!-- /.rh_footer__wrap -->
-
 </footer>
 <!-- /.rh_footer -->
 

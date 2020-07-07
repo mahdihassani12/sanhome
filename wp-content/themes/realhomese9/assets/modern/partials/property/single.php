@@ -71,7 +71,8 @@ if ( 'custom' === $order_settings ) {
 }
 ?>
     <section class="rh_section rh_wrap--padding rh_wrap--topPadding">
-
+    	<div class="row">
+		
 		<?php if ( have_posts() ) : ?>
 
 			<?php while ( have_posts() ) : ?>
@@ -80,201 +81,208 @@ if ( 'custom' === $order_settings ) {
 
 				<?php if ( ! post_password_required() ) : ?>
 
-                    <div class="rh_page rh_page--fullWidth">
-
-						<?php get_template_part( 'assets/modern/partials/property/single/head' ); ?>
-
-                        <div class="rh_property">
+					<div class="col-md-4">
+							
+						<div class="rh_property__sidebar">
 							<?php
-							/**
-							 * Property Slider
-							 */
-							get_template_part( 'assets/modern/partials/property/single/slider' );
-							?>
-
-                            <div class="rh_property__wrap rh_property--padding">
-                                <div class="rh_property__main">
+							if ( 'agent-in-sidebar' === $theme_property_detail_variation ) {
+								?>
+                                <aside class="rh_sidebar single_property_aside">
 									<?php
-									global $post;
+									get_template_part( 'assets/modern/partials/property/single/agent-for-sidebar' );
 
-									$property_id                         = get_post_meta( get_the_ID(), 'REAL_HOMES_property_id', true );
-									$prop_id_field_label                 = get_option( 'inspiry_prop_id_field_label' );
-									$inspiry_share_property_label        = get_option( 'inspiry_share_property_label' );
-
-									$inspiry_print_property_label        = get_option( 'inspiry_print_property_label' );
+                                    if ( is_active_sidebar( 'property-sidebar' ) ) {
+                                        dynamic_sidebar( 'property-sidebar' );
+                                    }
 									?>
+                                </aside>
+								<?php
+							} else {
+								get_sidebar( 'property' );
+							}
+							?>
+                        </div>
+                        <!-- /.rh_property__sidebar -->
 
-                                    <div class="rh_property__content clearfix">
+					</div> <!-- end of 4 col -->
 
-                                        <div class="rh_property__row rh_property__meta rh_property--borderBottom">
+					<div class="col-md-8">
+							
+						<div class="rh_page rh_page--fullWidth">
 
-                                            <div class="rh_property__id">
-                                                <p class="title">
-													<?php if ( $prop_id_field_label ) {
-														echo esc_html( "کد نمبر ملک" );
-													} else {
-														esc_html_e( 'کد نمبر ملک', 'framework' );
-													} ?>
-                                                    :</p>
-												<?php if ( ! empty( $property_id ) ) { ?>
-                                                    <p class="id">&nbsp;<?php echo esc_html( $property_id ); ?></p>
-												<?php } else { ?>
-                                                    <p class="id">&nbsp;<?php esc_html_e( 'ندارد', 'framework' ); ?></p>
-												<?php } ?>
-                                            </div>
+							<?php get_template_part( 'assets/modern/partials/property/single/head' ); ?>
 
-                                            <div class="rh_property__print">
+	                        <div class="rh_property">
+								<?php
+								/**
+								 * Property Slider
+								 */
+								get_template_part( 'assets/modern/partials/property/single/slider' );
+								?>
 
-                                                <a href="#" class="share" id="social-share">
-													<?php include INSPIRY_THEME_DIR . '/images/icons/icon-share-2.svg'; ?>
-                                                    <span class="rh_tooltip">
-                                                        <p class="label">
-                                                            <?php
-                                                            if ( $inspiry_share_property_label ) {
-	                                                            echo esc_html( "اشتراک" );
-                                                            } else {
-	                                                            esc_html_e( 'اشتراک', 'framework' );
-                                                            }
-                                                            ?>
-                                                        </p>
-                                                    </span>
-                                                </a>
-                                                <div class="share-this" data-check-mobile="<?php if ( wp_is_mobile() ) {
-													echo esc_html( 'موبایل' );
-												} ?>" data-property-name="<?php the_title(); ?>"
-                                                     data-property-permalink="<?php the_permalink(); ?>">
-                                                </div>
+	                            <div class="rh_property__wrap rh_property--padding">
 
-												<?php
-												// Display add to favorite button
-												inspiry_favorite_button( get_the_ID(), true );
-
-												$compare_properties_module = get_option( 'theme_compare_properties_module' );
-												$inspiry_compare_page      = get_option( 'inspiry_compare_page' );
-												if ( ( 'enable' === $compare_properties_module ) && ( $inspiry_compare_page ) ) {
-													?>
-                                                    <span class="rh_single_compare_button add-to-compare-span"
-                                                          data-button-id="<?php the_ID(); ?>"
-                                                          data-button-title="<?php echo get_the_title( get_the_ID() ); ?>"
-                                                          data-button-url="<?php echo get_the_permalink( get_the_ID() ); ?>">
-                                                        <?php
-                                                        $property_id = get_the_ID();
-                                                        if ( inspiry_is_added_to_compare( $property_id ) ) {
-	                                                        ?>
-                                                            <span class="compare-placeholder highlight"
-                                                                  data-tooltip="<?php esc_attr_e( 'اضافه در مقایسه', 'framework' ); ?>">
-                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
-                                                            </span>
-                                                            <a class="rh_trigger_compare add-to-compare hide"
-                                                               data-tooltip="<?php esc_attr_e( 'اضافه در مقایسه', 'framework' ); ?>"
-                                                               data-property-id="<?php the_ID(); ?>"
-                                                               href="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
-                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
-                                                            </a>
-	                                                        <?php
-                                                        } else {
-	                                                        ?>
-                                                            <span class="compare-placeholder highlight hide"
-                                                                  data-tooltip="<?php esc_attr_e( 'اضافه شد در مقایسه', 'framework' ); ?>">
-                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
-                                                            </span>
-                                                            <a class="rh_trigger_compare add-to-compare"
-                                                               data-tooltip="<?php esc_attr_e( 'اضافه در مقایسه', 'framework' ); ?>"
-                                                               data-property-id="<?php the_ID(); ?>"
-                                                               href="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
-                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
-                                                            </a>
-	                                                        <?php
-                                                        }
-                                                        ?>
-                                                    </span>
-													<?php
-												}
-												?>
-
-                                                <a href="javascript:window.print()" class="print">
-													<?php include INSPIRY_THEME_DIR . '/images/icons/icon-printer.svg'; ?>
-                                                    <span class="rh_tooltip">
-                                                        <p class="label">
-                                                            <?php
-                                                            if ( $inspiry_print_property_label ) {
-	                                                            echo esc_html( "چاپ" );
-                                                            } else {
-	                                                            esc_html_e( 'چاپ', 'framework' );
-                                                            }
-                                                            ?>
-                                                        </p>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                        </div>
-
+	                                <div class="rh_property__main single_content">
 										<?php
-										// Property meta information.
-										get_template_part( 'assets/modern/partials/property/single/meta' );
+										global $post;
 
-										// Display sections according to their order
-										if ( ! empty( $property_sections_order ) && is_array( $property_sections_order ) ) {
-											foreach ( $property_sections_order as $section ) {
-												if ( isset( $sortable_property_sections[ $section ] ) && 'true' === $sortable_property_sections[ $section ] ) {
+										$property_id                         = get_post_meta( get_the_ID(), 'REAL_HOMES_property_id', true );
+										$prop_id_field_label                 = get_option( 'inspiry_prop_id_field_label' );
+										$inspiry_share_property_label        = get_option( 'inspiry_share_property_label' );
+
+										$inspiry_print_property_label        = get_option( 'inspiry_print_property_label' );
+										?>
+
+	                                    <div class="rh_property__content clearfix">
+
+	                                        <div class="rh_property__row rh_property__meta rh_property--borderBottom">
+
+	                                            <div class="rh_property__id">
+	                                                <p class="title">
+														<?php if ( $prop_id_field_label ) {
+															echo esc_html( "کد نمبر ملک" );
+														} else {
+															esc_html_e( 'کد نمبر ملک', 'framework' );
+														} ?>
+	                                                    :</p>
+													<?php if ( ! empty( $property_id ) ) { ?>
+	                                                    <p class="id">&nbsp;<?php echo esc_html( $property_id ); ?></p>
+													<?php } else { ?>
+	                                                    <p class="id">&nbsp;<?php esc_html_e( 'ندارد', 'framework' ); ?></p>
+													<?php } ?>
+	                                            </div>
+
+	                                            <div class="rh_property__print">
+
+	                                                <a href="#" class="share" id="social-share">
+														<?php include INSPIRY_THEME_DIR . '/images/icons/icon-share-2.svg'; ?>
+	                                                    <span class="rh_tooltip">
+	                                                        <p class="label">
+	                                                            <?php
+	                                                            if ( $inspiry_share_property_label ) {
+		                                                            echo esc_html( "اشتراک" );
+	                                                            } else {
+		                                                            esc_html_e( 'اشتراک', 'framework' );
+	                                                            }
+	                                                            ?>
+	                                                        </p>
+	                                                    </span>
+	                                                </a>
+	                                                <div class="share-this" data-check-mobile="<?php if ( wp_is_mobile() ) {
+														echo esc_html( 'موبایل' );
+													} ?>" data-property-name="<?php the_title(); ?>"
+	                                                     data-property-permalink="<?php the_permalink(); ?>">
+	                                                </div>
+
+													<?php
+													// Display add to favorite button
+													inspiry_favorite_button( get_the_ID(), true );
+
+													$compare_properties_module = get_option( 'theme_compare_properties_module' );
+													$inspiry_compare_page      = get_option( 'inspiry_compare_page' );
+													if ( ( 'enable' === $compare_properties_module ) && ( $inspiry_compare_page ) ) {
+														?>
+	                                                    <span class="rh_single_compare_button add-to-compare-span"
+	                                                          data-button-id="<?php the_ID(); ?>"
+	                                                          data-button-title="<?php echo get_the_title( get_the_ID() ); ?>"
+	                                                          data-button-url="<?php echo get_the_permalink( get_the_ID() ); ?>">
+	                                                        <?php
+	                                                        $property_id = get_the_ID();
+	                                                        if ( inspiry_is_added_to_compare( $property_id ) ) {
+		                                                        ?>
+	                                                            <span class="compare-placeholder highlight"
+	                                                                  data-tooltip="<?php esc_attr_e( 'اضافه در مقایسه', 'framework' ); ?>">
+	                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
+	                                                            </span>
+	                                                            <a class="rh_trigger_compare add-to-compare hide"
+	                                                               data-tooltip="<?php esc_attr_e( 'اضافه در مقایسه', 'framework' ); ?>"
+	                                                               data-property-id="<?php the_ID(); ?>"
+	                                                               href="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
+	                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
+	                                                            </a>
+		                                                        <?php
+	                                                        } else {
+		                                                        ?>
+	                                                            <span class="compare-placeholder highlight hide"
+	                                                                  data-tooltip="<?php esc_attr_e( 'اضافه شد در مقایسه', 'framework' ); ?>">
+	                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
+	                                                            </span>
+	                                                            <a class="rh_trigger_compare add-to-compare"
+	                                                               data-tooltip="<?php esc_attr_e( 'اضافه در مقایسه', 'framework' ); ?>"
+	                                                               data-property-id="<?php the_ID(); ?>"
+	                                                               href="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
+	                                                                <?php include( INSPIRY_THEME_DIR . '/images/icons/icon-compare.svg' ); ?>
+	                                                            </a>
+		                                                        <?php
+	                                                        }
+	                                                        ?>
+	                                                    </span>
+														<?php
+													}
+													?>
+
+	                                                <a href="javascript:window.print()" class="print">
+														<?php include INSPIRY_THEME_DIR . '/images/icons/icon-printer.svg'; ?>
+	                                                    <span class="rh_tooltip">
+	                                                        <p class="label">
+	                                                            <?php
+	                                                            if ( $inspiry_print_property_label ) {
+		                                                            echo esc_html( "چاپ" );
+	                                                            } else {
+		                                                            esc_html_e( 'چاپ', 'framework' );
+	                                                            }
+	                                                            ?>
+	                                                        </p>
+	                                                    </span>
+	                                                </a>
+	                                            </div>
+	                                        </div>
+
+											<?php
+											// Property meta information.
+											get_template_part( 'assets/modern/partials/property/single/meta' );
+
+											// Display sections according to their order
+											if ( ! empty( $property_sections_order ) && is_array( $property_sections_order ) ) {
+												foreach ( $property_sections_order as $section ) {
+													if ( isset( $sortable_property_sections[ $section ] ) && 'true' === $sortable_property_sections[ $section ] ) {
 
 
-												    get_template_part( 'assets/modern/partials/property/single/' . $section );
+													    get_template_part( 'assets/modern/partials/property/single/' . $section );
+													}
 												}
 											}
-										}
-										?>
-                                    </div>
-
-									<?php get_template_part( 'assets/modern/partials/property/single/similar-properties' ); ?>
-
-                                    <section class="rh_property__comments">
-										<?php
-										/**
-										 * Comments
-										 *
-										 * If comments are open or we have at least one comment, load up the comment template.
-										 */
-										if ( comments_open() || get_comments_number() ) {
 											?>
-                                            <div class="property-comments">
-												<?php comments_template(); ?>
-                                            </div>
+	                                    </div>
+
+	                                    <section class="rh_property__comments">
 											<?php
-										}
-										?>
-                                    </section>
-
-                                </div>
-                                <!-- /.rh_property__main -->
-
-                                <div class="rh_property__sidebar">
-									<?php
-									if ( 'agent-in-sidebar' === $theme_property_detail_variation ) {
-										?>
-                                        <aside class="rh_sidebar">
-											<?php
-											get_template_part( 'assets/modern/partials/property/single/agent-for-sidebar' );
-
-                                            if ( is_active_sidebar( 'property-sidebar' ) ) {
-                                                dynamic_sidebar( 'property-sidebar' );
-                                            }
+											/**
+											 * Comments
+											 *
+											 * If comments are open or we have at least one comment, load up the comment template.
+											 */
+											if ( comments_open() || get_comments_number() ) {
+												?>
+	                                            <div class="property-comments">
+													<?php comments_template(); ?>
+	                                            </div>
+												<?php
+											}
 											?>
-                                        </aside>
-										<?php
-									} else {
-										get_sidebar( 'property' );
-									}
-									?>
-                                </div>
-                                <!-- /.rh_property__sidebar -->
-                            </div>
-                            <!-- /.rh_property__wrap -->
-                        </div>
-                        <!-- /.rh_property -->
+	                                    </section>
 
-                    </div>
-                    <!-- /.rh_page -->
+	                                </div>
+	                                <!-- /.rh_property__main -->
+	                            </div>
+	                            <!-- /.rh_property__wrap -->
+	                        </div>
+	                        <!-- /.rh_property -->
+
+	                    </div>
+	                    <!-- /.rh_page -->
+
+					</div> <!-- end of 8 col -->
 
 				<?php else : ?>
 
@@ -291,7 +299,17 @@ if ( 'custom' === $order_settings ) {
 
 		<?php endif; ?>
 
+		</div> <!-- end of row -->
+
+		<div class="row">
+			<div class="col-md-12">
+				<?php get_template_part( 'assets/modern/partials/property/single/similar-properties' ); ?>
+			</div>
+		</div> <!-- end of row -->
+
     </section>
 
 <?php
 get_footer();
+?>
+

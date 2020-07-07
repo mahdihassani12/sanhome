@@ -100,7 +100,7 @@ $is_featured        = get_post_meta( get_the_ID(), 'REAL_HOMES_featured', true )
             <p class="rh_prop_card__excerpt"><?php framework_excerpt( 10 ); ?></p>
             <!-- /.rh_prop_card__excerpt -->
 
-            <div class="rh_prop_card__meta_wrap">
+            <div class="rh_prop_card__meta_wrap similar_meta">
 
 				<?php if ( ! empty( $property_bedrooms ) ) : ?>
                     <div class="rh_prop_card__meta">
@@ -132,11 +132,7 @@ $is_featured        = get_post_meta( get_the_ID(), 'REAL_HOMES_featured', true )
                             <span class="figure">
 								<?php echo esc_html( $property_size ); ?>
 							</span>
-							<?php if ( ! empty( $size_postfix ) ) : ?>
-                                <span class="label">
-									<?php echo esc_html( $size_postfix ); ?>
-								</span>
-							<?php endif; ?>
+							
                         </div>
                     </div>
                     <!-- /.rh_prop_card__meta -->
@@ -145,7 +141,7 @@ $is_featured        = get_post_meta( get_the_ID(), 'REAL_HOMES_featured', true )
             </div>
             <!-- /.rh_prop_card__meta_wrap -->
 
-            <div class="rh_prop_card__priceLabel">
+            <div class="rh_prop_card__priceLabel property_price similar_property_price">
 
 				<span class="rh_prop_card__status">
 					<?php echo esc_html( display_property_status( get_the_ID() ) ); ?>

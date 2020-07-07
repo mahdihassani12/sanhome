@@ -44,7 +44,7 @@ function display_sidebar_agent_box( $args ) {
 				<?php
 			elseif ( isset( $args['agent_email'] ) ) :
 			?>
-				<a class="agent-image" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
+				<a class="agent-image " href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
 					<?php echo get_avatar( $args['agent_email'], '210' ); ?>
 				</a>
 				<?php

@@ -28,7 +28,12 @@ global $post;
 
 	<div class="row home_layout">
 		<div class="col-md-3">
-			
+			<div class="home_sidebar" style="height: 317px; background: #eee; margin-top: 15px;">
+					<?php dynamic_sidebar( 'home-sidebar' ); ?>
+			</div>
+			<div class="home_sidebar2" style="width: 100%; height: 500px; background: #eee; margin-top: 14px;">
+				
+			</div>
 		</div> <!-- advetisement -->
 		<div class="col-md-9">
 
@@ -37,7 +42,7 @@ global $post;
 					$property_listing_args = array(
 						'post_type'      => 'property',
 						'posts_per_page' => 4,
-						'order' => 'desc',
+						'order' => 'asc',
 						'order_by' => 'date'
 					);
 
@@ -71,4 +76,7 @@ global $post;
 				?>
 			</div> <!-- end of inner row -->
 
-	
+		</div> <!-- end of home content -->
+	</div>
+</div>
+

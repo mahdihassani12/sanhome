@@ -31,8 +31,8 @@
 			</div>			<!-- /.rh_label -->
 		<?php endif; ?>
 
-		<figure class="rh_prop_card__thumbnail">
-			<a href="<?php the_permalink(); ?>">
+		<figure class="rh_prop_card__thumbnail grid_thumb">
+			<a  href="<?php the_permalink(); ?>" >
 				<?php
 					if ( has_post_thumbnail( get_the_ID() ) ) {
 						the_post_thumbnail( 'modern-property-child-slider' );
@@ -68,22 +68,16 @@
 
 		<div class="rh_prop_card__details">
 
-			<h3>
+			<h3 class="properties_title">
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 			</h3>
 			<p class="rh_prop_card__excerpt"><?php framework_excerpt( 10 ); ?></p>
 			<!-- /.rh_prop_card__excerpt -->
 
-			<div class="rh_prop_card__meta_wrap">
+			<div class="rh_prop_card__meta_wrap properties_meta_data">
 
 				<?php if ( ! empty( $property_bedrooms ) ) : ?>
 					<div class="rh_prop_card__meta">
-						<span class="rh_meta_titles">
-							<?php
-								$bedrooms_label = get_option( 'inspiry_bedrooms_field_label' );
-								echo ( empty ( $bedrooms_label ) ) ? esc_html__( 'Bedrooms', 'framework' ) : esc_html( $bedrooms_label );
-							?>
-						</span>
 						<div>
 							<?php include( INSPIRY_THEME_DIR . '/images/icons/icon-bed.svg' ); ?>
 							<span class="figure"><?php echo esc_html( $property_bedrooms ); ?></span>
@@ -93,12 +87,6 @@
 
 				<?php if ( ! empty( $property_bathrooms ) ) : ?>
 					<div class="rh_prop_card__meta">
-						<span class="rh_meta_titles">
-							<?php
-								$bathrooms_label = get_option( 'inspiry_bathrooms_field_label' );
-								echo ( empty ( $bathrooms_label ) ) ? esc_html__( 'Bathrooms', 'framework' ) : esc_html( $bathrooms_label );
-							?>
-						</span>
 						<div>
 							<?php include( INSPIRY_THEME_DIR . '/images/icons/icon-shower.svg' ); ?>
 							<span class="figure"><?php echo esc_html( $property_bathrooms ); ?></span>
@@ -108,12 +96,6 @@
 
 				<?php if ( ! empty( $property_size ) ) : ?>
 					<div class="rh_prop_card__meta">
-						<span class="rh_meta_titles">
-							<?php
-								$area_label = get_option( 'inspiry_area_field_label' );
-								echo ( empty ( $area_label ) ) ? esc_html__( 'Area', 'framework' ) : esc_html( $area_label );
-							?>
-						</span>
 						<div>
 							<?php include( INSPIRY_THEME_DIR . '/images/icons/icon-area.svg' ); ?>
 							<span class="figure">
@@ -133,11 +115,11 @@
 
 			<div class="rh_prop_card__priceLabel">
 
-				<span class="rh_prop_card__status">
+				<span class="rh_prop_card__status grid_price">
 					<?php echo esc_html( display_property_status( get_the_ID() ) ); ?>
 				</span>
 				<!-- /.rh_prop_card__type -->
-				<p class="rh_prop_card__price">
+				<p class="rh_prop_card__price properties_price grid_price">
 					<?php
 					if ( function_exists( 'ere_property_price' ) ) {
 						ere_property_price();

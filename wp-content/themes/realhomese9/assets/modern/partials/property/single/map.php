@@ -14,7 +14,7 @@ if ( 'true' === $display_map ) {
 
 	if ( !empty( $property_address ) && !empty( $property_location ) && ( 1 != $hide_property_map ) ) {
 		?>
-		<div class="rh_property__map_wrap">
+		<div class="rh_property__map_wrap single_map">
 			<?php
 			$property_map_title = get_option( 'theme_property_map_title' );
 			if ( ! empty( $property_map_title ) ) {

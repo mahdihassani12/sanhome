@@ -1502,8 +1502,10 @@
 
     }
 
+    jQuery("#more_details_toggle").click(function(){ jQuery("#more_details_content").toggle(500); })
+
     $(document).ready(function () {
         decorateWhatsAppLink();
-    })
+    });
 
 })(jQuery);

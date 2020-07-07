@@ -18,10 +18,16 @@ if ( ! empty( $additional_details ) ) {    // Re-check.
 
 	$additional_details_title = get_option( 'theme_additional_details_title' );
 	if ( ! empty( $additional_details_title ) ) {
-		echo '<h4 class="rh_property__heading rh_property__additional_details">' . esc_html( "توضیحات بیشتر" ) . '</h4>';
+		
+		?>
+			<h4 class="rh_property__heading rh_property__additional_details " id="more_details_toggle">
+				توضیحات بیشتر
+				<span class="fa fa-plus"></span>
+			</h4>
+		<?php
 	}
 
-	echo '<ul class="rh_property__additional clearfix">';
+	echo '<ul class="rh_property__additional clearfix " id="more_details_content">';
 	foreach ( $additional_details as $title => $value ) {
 		?>
 		<li>

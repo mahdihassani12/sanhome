@@ -70,22 +70,16 @@
 
 			<div class="rh_list_card__details">
 
-				<h3>
+				<h3 class="properties_title">
 					<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 				</h3>
-				<p class="rh_list_card__excerpt"><?php framework_excerpt( 5 ); ?></p>
+				<p class="rh_list_card__excerpt properties_excerpt"><?php framework_excerpt( 5 ); ?></p>
 				<!-- /.rh_list_card__excerpt -->
 
-				<div class="rh_list_card__meta_wrap">
+				<div class="rh_list_card__meta_wrap properties_meta_data">
 
 					<?php if ( ! empty( $property_bedrooms ) ) : ?>
 						<div class="rh_list_card__meta">
-							<span class="rh_meta_titles">
-								<?php
-									$bedrooms_label = get_option( 'inspiry_bedrooms_field_label' );
-									echo ( empty ( $bedrooms_label ) ) ? esc_html__( 'اتاق خواب', 'framework' ) : esc_html( $bedrooms_label );
-								?>
-							</span>
 							<div>
 								<?php include INSPIRY_THEME_DIR . '/images/icons/icon-bed.svg'; ?>
 								<span class="figure"><?php echo esc_html( $property_bedrooms ); ?></span>
@@ -95,12 +89,6 @@
 
 					<?php if ( ! empty( $property_bathrooms ) ) : ?>
 						<div class="rh_list_card__meta">
-							<span class="rh_meta_titles">
-								<?php
-									$bathrooms_label = get_option( 'inspiry_bathrooms_field_label' );
-									echo ( empty ( $bathrooms_label ) ) ? esc_html__( 'احمام', 'framework' ) : esc_html( $bathrooms_label );
-								?>
-							</span>
 							<div>
 								<?php include INSPIRY_THEME_DIR . '/images/icons/icon-shower.svg'; ?>
 								<span class="figure"><?php echo esc_html( $property_bathrooms ); ?></span>
@@ -110,22 +98,11 @@
 
 					<?php if ( ! empty( $property_size ) ) : ?>
 						<div class="rh_list_card__meta">
-							<span class="rh_meta_titles">
-								<?php
-									$area_label = get_option( 'inspiry_area_field_label' );
-									echo ( empty ( $area_label ) ) ? esc_html__( 'مساحت', 'framework' ) : esc_html( $area_label );
-								?>
-							</span>
 							<div>
 								<?php include INSPIRY_THEME_DIR . '/images/icons/icon-area.svg'; ?>
 								<span class="figure">
 									<?php echo esc_html( $property_size ); ?>
 								</span>
-								<?php if ( ! empty( $size_postfix ) ) : ?>
-									<span class="label">
-										<?php echo esc_html( $size_postfix ); ?>
-									</span>
-								<?php endif; ?>
 							</div>
 						</div>						<!-- /.rh_list_card__meta -->
 					<?php endif; ?>
@@ -144,7 +121,7 @@
 					</span>
 					<!-- /.rh_prop_card__type -->
 
-					<p class="price">
+					<p class="price properties_price">
 						<?php
                         if ( function_exists( 'ere_property_price' ) ) {
 							ere_property_price();

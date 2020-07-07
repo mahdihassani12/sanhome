@@ -124,11 +124,6 @@ $post_meta_data = get_post_custom( get_the_ID() );
                 <span class="figure">
 					<?php echo esc_html( $property_size ); ?>
 				</span>
-				<?php if ( ! empty( $size_postfix ) ) : ?>
-                    <span class="label">
-						<?php echo esc_html( $size_postfix ); ?>
-					</span>
-				<?php endif; ?>
             </div>
         </div>
         <!-- /.rh_property__meta -->
@@ -174,6 +169,37 @@ $post_meta_data = get_post_custom( get_the_ID() );
         </div>
         <!-- /.rh_property__meta -->
 	<?php endif; ?>
+
+	<div class="rh_page__property_price property_price">
+		<p class="status">
+			<?php
+			/* Property Status. For example: For Sale, For Rent */
+			$status_terms = get_the_terms( get_the_ID(), 'property-status' );
+			if ( ! empty( $status_terms ) ) {
+				$status_count = 0;
+				foreach ( $status_terms as $term ) {
+					if ( $status_count > 0 ) {
+						echo ', ';
+					}
+					echo esc_html( $term->name );
+					$status_count ++;
+				}
+			} else {
+				echo '&nbsp;';
+			}
+			?>
+		</p>
+		<!-- /.status -->
+		<p class="price">
+			<?php
+			if ( function_exists( 'ere_property_price' ) ) {
+				ere_property_price();
+			}
+            ?>
+		</p>
+		<!-- /.price -->
+	</div>
+	<!-- /.rh_page__property_price -->
 
 	<?php
 	/**
